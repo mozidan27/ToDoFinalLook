@@ -1,19 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
 import 'package:todo/Pages/home_page.dart';
 import 'package:todo/widgets/mybutton.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
-  void _navigation(BuildContext context) {
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  final TextEditingController _myController = TextEditingController();
+
+  void _navigate(BuildContext context) {
+    final String userName = _myController.text.trim();
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return const HomePage();
+        return HomePage(userName: userName);
       },
     ));
+    _myController.clear();
   }
 
   @override
@@ -30,8 +36,10 @@ class WelcomePage extends StatelessWidget {
                 backgroundImage: AssetImage('assets/WB.jpg'),
                 radius: 190,
               ),
-              const Gap(50),
+              const SizedBox(height: 20),
               TextField(
+                style: const TextStyle(color: Colors.white),
+                controller: _myController,
                 decoration: InputDecoration(
                   fillColor: Colors.purple[900],
                   filled: true,
@@ -43,29 +51,11 @@ class WelcomePage extends StatelessWidget {
                       Radius.circular(16),
                     ),
                   ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                  ),
-                  disabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
                 ),
               ),
-              const Gap(100),
+              const SizedBox(height: 50),
               GestureDetector(
-                onTap: () => _navigation(context),
+                onTap: () => _navigate(context),
                 child: const MyButton(
                   buttonName: "LET'S GO",
                 ),
