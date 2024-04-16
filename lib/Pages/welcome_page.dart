@@ -14,11 +14,13 @@ class _WelcomePageState extends State<WelcomePage> {
 
   void _navigate(BuildContext context) {
     final String userName = _myController.text.trim();
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) {
-        return HomePage(userName: userName);
-      },
-    ));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return HomePage(userName: userName);
+        },
+      ),
+    );
     _myController.clear();
   }
 
