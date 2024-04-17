@@ -27,7 +27,7 @@ class DialogBox extends StatelessWidget {
             TextField(
               controller: controller,
               decoration: InputDecoration(
-                hintText: 'Add a new task!',
+                hintText: 'Enter a new task!',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(color: Colors.grey)),

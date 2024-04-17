@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo/Pages/home_page.dart';
 import 'package:todo/widgets/mybutton.dart';
 
@@ -12,7 +13,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   final TextEditingController _myController = TextEditingController();
 
-  void _navigate(BuildContext context) {
+  void _navigate(BuildContext context) async {
     final String userName = _myController.text.trim();
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -21,6 +22,11 @@ class _WelcomePageState extends State<WelcomePage> {
         },
       ),
     );
+    // Set the launchedBefore flag to true and store the user's name
+    var box = Hive.box('mybox');
+    await box.put('launchedBefore', true);
+    await box.put('userName', userName);
+
     _myController.clear();
   }
 
