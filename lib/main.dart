@@ -14,10 +14,12 @@ void main() async {
   bool launchedBefore = box.get('launchedBefore') ?? false;
   String? userName = box.get('userName');
 
-  runApp(ToDoApp(
-    launchedBefore: launchedBefore,
-    userName: userName,
-  ));
+  runApp(
+    ToDoApp(
+      launchedBefore: launchedBefore,
+      userName: userName,
+    ),
+  );
 }
 
 class ToDoApp extends StatelessWidget {
